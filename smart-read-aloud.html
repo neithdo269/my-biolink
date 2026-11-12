@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Smart Read Aloud — News &amp; Article Reader | Neith.Do</title>
+  <meta name="description" content="Listen to news articles, web pages, and chats aloud in multiple languages with word highlighting, voice styles, and focus reader view.">
+  <link rel="icon" href="assets/smart-read-aloud-icon.png">
+  <style>
+    :root {
+      --bg: #f6f7f4;
+      --card: #ffffff;
+      --ink: #172116;
+      --muted: #4b5a49;
+      --accent: #3f6e34;
+      --accent-dark: #2f5526;
+      --accent-soft: #e7f0e4;
+      --border: #d7e2d3;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111611;
+        --card: #192119;
+        --ink: #eef3ec;
+        --muted: #aab8a7;
+        --accent: #6fb25d;
+        --accent-dark: #84c573;
+        --accent-soft: rgba(111, 178, 93, 0.14);
+        --border: #2a372a;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 28px 20px 64px;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 32px;
+      font-size: 0.95rem;
+    }
+    .nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .nav a:hover { text-decoration: underline; }
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 28px;
+      align-items: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; padding: 22px; }
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .brand img {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+    h1 {
+      font-size: clamp(1.5rem, 3vw, 2.05rem);
+      line-height: 1.2;
+      margin: 0 0 12px;
+    }
+    .subtitle {
+      color: var(--muted);
+      margin: 0 0 22px;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+    }
+    .btn-secondary {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid var(--border);
+    }
+    .preview img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+    .grid {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+    }
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+    .section {
+      margin-top: 28px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .section h2 {
+      margin: 0 0 10px;
+      font-size: 1.25rem;
+    }
+    footer {
+      margin-top: 36px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <a href="index.html">&larr; Neith.Do (Thiên Đỗ)</a>
+      <div style="display:flex; gap:18px;">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="mailto:16av112thien@gmail.com">Support</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <div class="brand">
+          <img src="assets/smart-read-aloud-icon.png" alt="Smart Read Aloud icon">
+          <div>
+            <span class="badge">Chromium Browser Extension &middot; v1.1.0</span>
+            <div style="font-size:0.9rem; color:var(--muted);">By <strong>Neith.Do</strong></div>
+          </div>
+        </div>
+        <h1>Smart Read Aloud — News &amp; Article Reader</h1>
+        <p class="subtitle">
+          Listen to news articles, blogs, documentation, and selected text aloud in multiple languages with live sentence &amp; word highlighting, voice styles, and distraction-free Focus Reader view.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://neithdo.lemonsqueezy.com/checkout/buy/3b8152fb-b5a6-42bb-8e89-bac45c0ee99a" target="_blank" rel="noopener">Get Pro License</a>
+          <a class="btn btn-secondary" href="privacy.html">Privacy Policy</a>
+          <a class="btn btn-secondary" href="mailto:16av112thien@gmail.com">Contact Support</a>
+        </div>
+      </div>
+      <div class="preview">
+        <img src="assets/smart-read-aloud-preview.png" alt="Smart Read Aloud preview">
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h3>Smart Article Extraction</h3>
+        <p>Automatically isolates headlines, lead summaries, and full article prose while skipping navigation bars, sidebars, and cookie banners.</p>
+      </article>
+      <article class="card">
+        <h3>Continues Across Tabs</h3>
+        <p>Switch tabs freely while listening — playback stays active uninterrupted until you explicitly pause or start reading a different tab.</p>
+      </article>
+      <article class="card">
+        <h3>Live Word Highlighting</h3>
+        <p>Follow along visually as each sentence and spoken word highlights smoothly on the page or inside the distraction-free Focus Reader overlay.</p>
+      </article>
+      <article class="card">
+        <h3>Multilingual &amp; Private</h3>
+        <p>Free offline system voices in Vietnamese, English, Japanese, Korean, Chinese, French, German, Spanish &amp; more — plus optional BYO cloud speech keys.</p>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2>Quick Shortcuts &amp; Browsers</h2>
+      <p style="margin:0; color:var(--muted);">
+        Compatible with <strong>Google Chrome</strong>, <strong>Microsoft Edge</strong>, <strong>Opera / Opera GX</strong>, and Brave (Manifest V3).<br>
+        Press <strong>F9</strong>, <strong>Alt+R</strong>, or <strong>Ctrl+Shift+U</strong> on any article to start listening immediately, or right-click any paragraph and pick <em>Read aloud from here</em>.
+      </p>
+    </section>
+
+    <footer>
+      <p>
+        Publisher: <strong>Neith.Do</strong> &middot;
+        Support: <a href="mailto:16av112thien@gmail.com">16av112thien@gmail.com</a> &middot;
+        <a href="privacy.html">Privacy Policy</a> &middot;
+        <a href="index.html">Developer Profile</a>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>
